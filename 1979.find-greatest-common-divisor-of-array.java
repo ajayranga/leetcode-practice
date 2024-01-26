@@ -19,14 +19,14 @@ class Solution {
         return sml;
     }
 
-    public static int[] findSmallestAndGreatest(int[] nums) {
-        int grt = nums[0], sml = nums[0];
-        for (int i = 1; i < nums.length; i++) {
-            if (nums[i] > grt) {
-                grt = nums[i];
+    public static int[] findSmallestAndGreatest(int[] arr) {
+        int grt = arr[0], sml = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > grt) {
+                grt = arr[i];
             }
-            if (nums[i] < sml) {
-                sml = nums[i];
+            if (arr[i] < sml) {
+                sml = arr[i];
             }
         }
         int[] resArr = { sml, grt };
