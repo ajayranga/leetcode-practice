@@ -6,22 +6,17 @@
 
 // @lc code=start
 function productExceptSelf(nums: number[]): number[] {
-  const prefix: number[] = [];
-  const suffix: number[] = [];
-  let prd1 = 1,
-    prd2 = 1;
-  for (let i = 0; i < nums.length; i++) {
-    prd1 *= nums[i];
-    prefix.push(prd1);
-    prd2 *= nums[nums.length - i - 1];
-    suffix.unshift(prd2);
+  const ans: number[] = [1];
+  let prd = 1;
+  for (let i = 1; i < nums.length; i++) {
+    prd *= nums[i - 1];
+    ans.push(prd);
   }
-  return prefix.map((_, idx) =>
-    idx === 0
-      ? suffix[1]
-      : idx === prefix.length - 1
-      ? prefix[prefix.length - 2]
-      : prefix[idx - 1] * suffix[idx + 1]
-  );
+  prd = 1;
+  for (let i = nums.length - 2; i >= 0; i--) {
+    prd *= nums[i + 1];
+    ans[i] *= prd;
+  }
+  return ans;
 }
 // @lc code=end
