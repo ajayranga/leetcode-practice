@@ -6,16 +6,15 @@
 
 // @lc code=start
 function twoSum(numbers: number[], target: number): number[] {
-  const ans: number[] = [];
-  const searchMap = new Map();
-  for (let i = 0; i < numbers.length; i++) {
-    const numbToFind = target - numbers[i];
-    if (searchMap.has(numbToFind)) {
-      return [searchMap.get(numbToFind), i + 1];
+  let l = 0,
+    r = numbers.length - 1;
+  while (numbers[l] + numbers[r] !== target) {
+    if (numbers[l] + numbers[r] < target) {
+      l++;
     } else {
-      searchMap.set(numbers[i], i + 1);
+      r--;
     }
   }
-  return ans;
+  return [l + 1, r + 1];
 }
 // @lc code=end
