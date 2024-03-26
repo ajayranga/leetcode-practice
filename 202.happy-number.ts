@@ -15,6 +15,7 @@ function isHappy(n: number): boolean {
       sumDig += (temp % 10) * (temp % 10);
       temp = ~~(temp / 10);
     }
+    console.log(sumDig);
     n = sumDig;
     if (sumDig === 1) {
       return true;
@@ -23,3 +24,4 @@ function isHappy(n: number): boolean {
   return false;
 }
 // @lc code=end
+console.log(isHappy(2));
