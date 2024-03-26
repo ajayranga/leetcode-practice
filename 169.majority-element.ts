@@ -6,21 +6,16 @@
 
 // @lc code=start
 function majorityElement(nums: number[]): number {
-  let ans = 0;
-  const frqObj: { [k: string]: number } = {};
+  let ans = 0,
+    count = 0;
 
-  for (let i = 0; i < nums.length; i++) {
-    frqObj[nums[i]] = frqObj[nums[i]] ? ++frqObj[nums[i]] : 1;
-  }
-  let maxFrq = 0;
-  for (let key in frqObj) {
-    if (frqObj[key] > maxFrq) {
-      maxFrq = frqObj[key];
-      ans = +key;
+  for (let n of nums) {
+    if (count === 0) {
+      ans = n;
     }
+    if (ans === n) count++;
+    else count--;
   }
   return ans;
 }
 // @lc code=end
-console.clear();
-console.log(majorityElement([2, 2, 1, 1, 1, 2, 2]));
