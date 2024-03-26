@@ -12,7 +12,7 @@ function rotate(matrix: number[][]): void {
   }
   // column reverse
   for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < Math.floor(matrix[0].length / 2); j++) {
+    for (let j = 0; j < ~~(matrix[0].length / 2); j++) {
       matrix[i][j] = matrix[i][j] + matrix[i][matrix[i].length - j - 1];
       matrix[i][matrix[i].length - j - 1] =
         matrix[i][j] - matrix[i][matrix[i].length - j - 1];
