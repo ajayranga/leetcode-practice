@@ -6,15 +6,10 @@
 
 // @lc code=start
 function singleNumber(nums: number[]): number {
-  const frqObj = {};
+  let ans = 0;
   for (let n of nums) {
-    frqObj[n] = frqObj[n] ? frqObj[n] + 1 : 1;
+    ans ^= n;
   }
-  for (let key in frqObj) {
-    if (frqObj[key] === 1) {
-      return +key;
-    }
-  }
-  return 0;
+  return ans;
 }
 // @lc code=end
