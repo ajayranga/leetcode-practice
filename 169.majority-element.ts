@@ -12,8 +12,10 @@ function majorityElement(nums: number[]): number {
   for (let i = 0; i < nums.length; i++) {
     frqObj[nums[i]] = frqObj[nums[i]] ? ++frqObj[nums[i]] : 1;
   }
+  let maxFrq = 0;
   for (let key in frqObj) {
-    if (frqObj[key] > ans) {
+    if (frqObj[key] > maxFrq) {
+      maxFrq = frqObj[key];
       ans = +key;
     }
   }
