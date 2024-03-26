@@ -2,21 +2,19 @@
  Do not return anything, modify matrix in-place instead.
  */
 function rotate(matrix: number[][]): void {
-  // transpose
-  for (let i = 0; i < matrix.length; i++) {
-    for (let j = i + 1; j < matrix[0].length; j++) {
-      matrix[i][j] = matrix[i][j] + matrix[j][i];
-      matrix[j][i] = matrix[i][j] - matrix[j][i];
-      matrix[i][j] = matrix[i][j] - matrix[j][i];
+  for (let i = 0; i < ~~(matrix.length / 2); i++) {
+    const len = matrix[0].length - i - 1;
+    for (let j = i; j < len; j++) {
+      [matrix[j][len], matrix[i][j]] = [matrix[i][j], matrix[j][len]];
+      [matrix[matrix.length - i - 1][matrix.length - j - 1], matrix[i][j]] = [
+        matrix[i][j],
+        matrix[matrix.length - i - 1][matrix.length - j - 1],
+      ];
+      [matrix[len - j + i][i], matrix[i][j]] = [
+        matrix[i][j],
+        matrix[len - j + i][i],
+      ];
     }
   }
-  // column reverse
-  for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < ~~(matrix[0].length / 2); j++) {
-      matrix[i][j] = matrix[i][j] + matrix[i][matrix[i].length - j - 1];
-      matrix[i][matrix[i].length - j - 1] =
-        matrix[i][j] - matrix[i][matrix[i].length - j - 1];
-      matrix[i][j] = matrix[i][j] - matrix[i][matrix[i].length - j - 1];
-    }
-  }
+  matrix.forEach((row) => console.log(row));
 }
