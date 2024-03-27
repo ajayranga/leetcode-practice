@@ -3,7 +3,7 @@ type Fn = (...params: number[]) => number
 function memoize(fn: Fn): Fn {
     const cacheMap = new Map();
     return function (...args) {
-        const caller = [fn.toString(), ...args].join("-")
+        const caller = JSON.stringify(args)
         if (!cacheMap.has(caller)) {
             cacheMap.set(caller, fn(...args))
         }
