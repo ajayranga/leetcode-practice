@@ -2,27 +2,16 @@ type JSONValue = null | boolean | number | string | JSONValue[] | { [key: string
 type ArrayType = { "id": number } & Record<string, JSONValue>;
 
 function join(arr1: ArrayType[], arr2: ArrayType[]): ArrayType[] {
-    const arr1Map = new Map();
-    const arr2Map = new Map();
-    for (let obj of arr1) {
-        arr1Map.set(obj.id, obj)
+    const result: Record<string, ArrayType> = {};
+    for (let itm of arr1) {
+        result[itm.id] = itm;
     }
-    for (let obj of arr2) {
-        arr2Map.set(obj.id, obj)
-    }
-    const ans: ArrayType[] = [];
-    for (let [id, val] of arr1Map) {
-        if (arr2Map.has(id)) {
-            ans.push({ ...val, ...arr2Map.get(id) })
+    for (let itm of arr2) {
+        if (result.hasOwnProperty(itm.id)) {
+            result[itm.id] = { ...result[itm.id], ...itm }
         } else {
-            ans.push(val)
+            result[itm.id] = itm;
         }
     }
-
-    for (let [id, val] of arr2Map) {
-        if (!arr1Map.has(id)) {
-            ans.push(val)
-        }
-    }
-    return ans.sort((a, b) => a.id - b.id);
+    return Object.values(result)
 };
