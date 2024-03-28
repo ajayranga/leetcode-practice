@@ -23,3 +23,28 @@ function lengthOfLongestSubstring(s: string): number {
   return ans;
 }
 // @lc code=end
+console.clear();
+type MultiDimensionalArray = (number | MultiDimensionalArray)[];
+
+var flat = function (
+  arr: MultiDimensionalArray,
+  n: number
+): MultiDimensionalArray {
+  if (n === 0) {
+    return arr;
+  }
+  if (arr.every((itm) => typeof itm === 'number')) {
+    return arr;
+  }
+  let len = arr.length;
+  let flattedLvlArr: MultiDimensionalArray = [];
+  for (let i = 0; i < len; i++) {
+    if (typeof arr[i] === 'number') {
+      flattedLvlArr.push(arr[i]);
+    } else {
+      flattedLvlArr = flattedLvlArr.concat(arr[i]);
+    }
+  }
+  arr = flattedLvlArr;
+  return arr;
+};
