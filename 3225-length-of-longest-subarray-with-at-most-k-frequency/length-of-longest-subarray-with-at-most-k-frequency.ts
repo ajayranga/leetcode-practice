@@ -1,11 +1,7 @@
 function maxSubarrayLength(nums: number[], k: number): number {
-    // if (nums.length < 2) {
-    //     return nums.length;
-    // }
     let ans = 0;
     let frqMap = new Map<number, number>();
     let l = 0;
-    // frqMap.set(nums[0], 1)
     for (let i = 0; i < nums.length; i++) {
         if (frqMap.has(nums[i])) {
             frqMap.set(nums[i], frqMap.get(nums[i]) + 1)
