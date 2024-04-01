@@ -1,0 +1,5 @@
+-- Write your PostgreSQL query statement below
+SELECT (TEACHER_ID),
+COUNT(DISTINCT(SUBJECT_ID)) as cnt
+FROM TEACHER
+GROUP BY TEACHER_ID
